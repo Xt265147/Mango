@@ -1,0 +1,24 @@
+
+
+     QQQQQQQQQ        iiii                                           XXXXXXX       XXXXXXX
+   QQ:::::::::QQ     i::::i                                          X:::::X       X:::::X
+ QQ:::::::::::::QQ    iiii                                           X:::::X       X:::::X
+Q:::::::QQQ:::::::Q                                                  X::::::X     X::::::X
+Q::::::O   Q::::::Q iiiiiii   aaaaaaaaaaaaa   nnnn  nnnnnnnn         XXX:::::X   X:::::XXXuuuuuu    uuuuuu  nnnn  nnnnnnnn
+Q:::::O     Q:::::Q i:::::i   a::::::::::::a  n:::nn::::::::nn          X:::::X X:::::X   u::::u    u::::u  n:::nn::::::::nn
+Q:::::O     Q:::::Q  i::::i   aaaaaaaaa:::::a n::::::::::::::nn          X:::::X:::::X    u::::u    u::::u  n::::::::::::::nn
+Q:::::O     Q:::::Q  i::::i            a::::a nn:::::::::::::::n          X:::::::::X     u::::u    u::::u  nn:::::::::::::::n
+Q:::::O     Q:::::Q  i::::i     aaaaaaa:::::a   n:::::nnnn:::::n          X:::::::::X     u::::u    u::::u    n:::::nnnn:::::n
+Q:::::O     Q:::::Q  i::::i   aa::::::::::::a   n::::n    n::::n         X:::::X:::::X    u::::u    u::::u    n::::n    n::::n
+Q:::::O  QQQQ:::::Q  i::::i  a::::aaaa::::::a   n::::n    n::::n        X:::::X X:::::X   u::::u    u::::u    n::::n    n::::n
+Q::::::O Q::::::::Q  i::::i a::::a    a:::::a   n::::n    n::::n     XXX:::::X   X:::::XXXu:::::uuuu:::::u    n::::n    n::::n
+Q:::::::QQ::::::::Q i::::::ia::::a    a:::::a   n::::n    n::::n     X::::::X     X::::::Xu:::::::::::::::uu  n::::n    n::::n
+ QQ::::::::::::::Q  i::::::ia:::::aaaa::::::a   n::::n    n::::n     X:::::X       X:::::X u:::::::::::::::u  n::::n    n::::n
+   QQ:::::::::::Q   i::::::i a::::::::::aa:::a  n::::n    n::::n     X:::::X       X:::::X  uu::::::::uu:::u  n::::n    n::::n
+     QQQQQQQQ::::QQ iiiiiiii  aaaaaaaaaa  aaaa  nnnnnn    nnnnnn     XXXXXXX       XXXXXXX    uuuuuuuu  uuuu  nnnnnn    nnnnnn
+             Q:::::Q
+              QQQQQQ
+
+
+
+
