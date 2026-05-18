@@ -81,5 +81,5 @@ public class Dept implements Serializable {
      */
     @TableLogic
     @TableField("del_flag")
-    private Byte delFlag;
+    private Integer delFlag;
 }

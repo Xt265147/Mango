@@ -30,4 +30,8 @@ public class PageRequest {
     @Getter
     @Setter
     private Map<String,Object> params = new HashMap<>();
+
+    public Object getParam(String key) {
+        return params.get(key);
+    }
 }

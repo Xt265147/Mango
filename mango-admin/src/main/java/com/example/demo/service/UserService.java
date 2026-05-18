@@ -5,6 +5,7 @@ import com.evan.mangocore.page.PageResult;
 import com.example.demo.model.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -23,4 +24,6 @@ public interface UserService extends IService<User> {
      * @ return
      */
     List<User> findAll();
+
+    File createUserExcelFile(PageRequest pageRequest);
 }

@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mango-admin.dao.DictMapper">
+<mapper namespace="com.example.demo.dao.DictMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.model.Dict">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="dict_type" property="dictType" jdbcType="VARCHAR"/>
+        <result column="dict_value" property="dictValue" jdbcType="VARCHAR"/>
+        <result column="label" property="label" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findPage" resultMap="BaseResultMap">
+        select * from sys_dict
+    </select>
+
+    <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter + '%'"/>
+        select * from sys_dict where label like #{pattern}
+    </select>
+
+    <select id="findByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <bind name="pattern" value="'%' + _parameter + '%'"/>
+        select * from sys_dict where label like #{pattern}
+    </select>
 
 </mapper>

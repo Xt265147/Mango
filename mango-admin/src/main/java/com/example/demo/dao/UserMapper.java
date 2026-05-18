@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserMapper extends BaseMapper<User> {
 /**
  * 分页查询
- * @return
+ * @ return
  */
 List<User> findPage();
 }

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 @TableName("sys_user")
 public class User implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -80,7 +82,7 @@ public class User implements Serializable {
      * 状态 0：禁用   1：正常
      */
     @TableField("status")
-    private Byte status;
+    private Integer status;
 
     /**
      * 机构ID
@@ -117,5 +119,5 @@ public class User implements Serializable {
      */
     @TableLogic
     @TableField("del_flag")
-    private Byte delFlag;
+    private Integer delFlag;
 }

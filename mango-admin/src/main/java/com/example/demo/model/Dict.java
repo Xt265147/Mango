@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 @TableName("sys_dict")
 public class Dict implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
@@ -99,5 +101,5 @@ public class Dict implements Serializable {
      */
     @TableLogic
     @TableField("del_flag")
-    private Byte delFlag;
+    private Integer delFlag;
 }

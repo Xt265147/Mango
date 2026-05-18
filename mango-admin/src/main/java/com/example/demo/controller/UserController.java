@@ -3,11 +3,12 @@ package com.example.demo.controller;
 import com.evan.mangocore.http.HttpResult;
 import com.evan.mangocore.page.PageRequest;
 import com.example.demo.service.UserService;
+import com.example.demo.utils.FileUtils;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
 
 /**
  * <p>
@@ -33,4 +34,9 @@ public class UserController {
         return HttpResult.ok(userService.findPage(pageRequest));
     }
 
+    @PostMapping(value = "/exportExcelUser")
+    public void exportExcelUser(@RequestBody PageRequest pageRequest, HttpServletResponse res) {
+        File file = userService.createUserExcelFile(pageRequest);
+        FileUtils.downloadFile(res, file, file.getName());
+    }
 }
