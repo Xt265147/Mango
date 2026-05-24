@@ -8,10 +8,13 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 @Configuration
 public class SwaggerConfig {
 
     private static final String SECURITY_SCHEME_NAME = "bearer";
+
 
     @Bean
     public OpenAPI customOpenAPI() {

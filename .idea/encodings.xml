@@ -5,5 +5,6 @@
     <file url="file://$PROJECT_DIR$/demo/mango-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/demo/mango-pom/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mango-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mango-backup/src/main/java" charset="UTF-8" />
   </component>
 </project>
