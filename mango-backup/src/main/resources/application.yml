@@ -4,9 +4,21 @@ server:
 spring:
   application:
     name: mango-backup
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+  datasource:
+    url: jdbc:mysql://localhost:3306/mango?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 mango:
   backup:
@@ -15,4 +27,5 @@ mango:
       userName: root
       password: root
       database: mango
+      port: 3306
 

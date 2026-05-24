@@ -11,6 +11,7 @@
         <module name="mango-common" />
         <module name="mango-pom" />
         <module name="mango-core" />
+        <module name="mango-monitor" />
       </profile>
       <profile name="Annotation profile for mango-admin" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -29,6 +30,7 @@
       <module name="mango-backup" options="-parameters" />
       <module name="mango-common" options="-parameters" />
       <module name="mango-core" options="-parameters" />
+      <module name="mango-monitor" options="-parameters" />
       <module name="mango-pom" options="-parameters" />
     </option>
   </component>
