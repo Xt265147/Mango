@@ -1,0 +1,79 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FEFEFE
+
+title Mango 服务启动与注册时序图
+
+actor "运维人员" as Ops
+participant "Consul\n:8500" as Consul
+participant "mango-monitor\n:8000" as Monitor
+participant "mango-admin\n:8001" as Admin
+participant "mango-backup\n:8002" as Backup
+participant "mango-producer\n:8004" as Producer
+participant "mango-consumer\n:8005" as Consumer
+database "MySQL" as DB
+
+== 启动阶段 ==
+
+Ops -> Consul : 1. consul agent -dev
+activate Consul
+Consul --> Ops : Consul 启动成功
+deactivate Consul
+
+Ops -> Monitor : 2. 启动监控服务
+activate Monitor
+Monitor -> Consul : 3. 注册到 Consul
+activate Consul
+Consul --> Monitor : 注册成功
+deactivate Consul
+Monitor --> Ops : 监控服务启动 (端口 8000)
+deactivate Monitor
+
+Ops -> Admin : 4. 启动管理服务
+activate Admin
+Admin -> Consul : 5. 注册到 Consul
+activate Consul
+Consul --> Admin : 注册成功
+deactivate Consul
+Admin -> DB : 6. 连接数据库
+activate DB
+DB --> Admin : 连接成功
+deactivate DB
+Admin --> Ops : 管理服务启动 (端口 8001)
+deactivate Admin
+
+== 监控发现阶段 ==
+
+Monitor -> Consul : 7. 定时拉取服务列表
+activate Consul
+Consul --> Monitor : mango-admin, mango-backup...
+deactivate Consul
+
+Monitor -> Admin : 8. 健康检查 (GET /actuator/health)
+activate Admin
+Admin --> Monitor : 200 OK { "status": "UP" }
+deactivate Admin
+
+Monitor -> Backup : 9. 健康检查 (GET /actuator/health)
+activate Backup
+Backup --> Monitor : 200 OK { "status": "UP" }
+deactivate Backup
+
+Monitor -> Producer : 10. 健康检查 (GET /actuator/health)
+activate Producer
+Producer --> Monitor : 200 OK { "status": "UP" }
+deactivate Producer
+
+Monitor -> Consumer : 11. 健康检查 (GET /actuator/health)
+activate Consumer
+Consumer --> Monitor : 200 OK { "status": "UP" }
+deactivate Consumer
+
+== 监控展示 ==
+
+Ops -> Monitor : 12. 访问 http://localhost:8000
+activate Monitor
+Monitor --> Ops : 展示所有服务状态
+deactivate Monitor
+
+@enduml

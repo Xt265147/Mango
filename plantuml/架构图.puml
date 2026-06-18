@@ -1,0 +1,66 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam componentStyle rectangle
+
+title Mango 系统架构图
+
+' 用户/客户端
+actor "浏览器/客户端" as Client
+
+' 负载均衡/网关
+node "Consul\n(注册中心 :8500)" as Consul {
+}
+
+' 监控层
+package "监控层" as MonitorLayer #E8F5E9 {
+    component "mango-monitor\n(Spring Boot Admin)\n端口: 8000" as Monitor
+}
+
+' 业务服务层
+package "业务服务层" as ServiceLayer #E3F2FD {
+    component "mango-admin\n(后台管理服务)\n端口: 8001" as Admin
+    component "mango-backup\n(数据备份服务)\n端口: 8002" as Backup
+    component "mango-producer\n(消息生产者)\n端口: 8004" as Producer
+    component "mango-consumer\n(消息消费者)\n端口: 8005" as Consumer
+}
+
+' 公共组件层
+package "公共组件层 (demo)" as CommonLayer #FFF3E0 {
+    component "mango-common\n(公共模块)" as Common
+    component "mango-core\n(核心模块)" as Core
+    component "mango-pom\n(父POM)" as Pom
+}
+
+' 数据层
+package "数据层" as DataLayer #FCE4EC {
+    database "MySQL\n(数据库)" as MySQL
+    component "mango-backup\n备份文件" as BackupFile
+}
+
+' 连接关系
+Client --> Monitor : "HTTP 访问监控"
+Client --> Admin : "HTTP 访问后台"
+Client --> Producer : "HTTP 调用"
+Client --> Consumer : "HTTP 调用"
+
+Monitor ..> Consul : "服务发现"
+Admin ..> Consul : "服务注册"
+Backup ..> Consul : "服务注册"
+Producer ..> Consul : "服务注册"
+Consumer ..> Consul : "服务注册"
+
+Admin --> MySQL : "读写数据"
+Backup --> MySQL : "备份数据"
+Backup --> BackupFile : "导出SQL"
+
+Monitor ..> Admin : "健康检查"
+Monitor ..> Backup : "健康检查"
+Monitor ..> Producer : "健康检查"
+Monitor ..> Consumer : "健康检查"
+
+Admin ..> Common : 依赖
+Admin ..> Core : 依赖
+Backup ..> Core : 依赖
+
+@enduml

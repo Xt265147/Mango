@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Mango.iml" filepath="$PROJECT_DIR$/.idea/Mango.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mango-monitor/mango-monitor.iml" filepath="$PROJECT_DIR$/mango-monitor/mango-monitor.iml" />
     </modules>
   </component>
 </project>

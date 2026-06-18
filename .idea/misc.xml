@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/mango-backuo/pom.xml" />
         <option value="$PROJECT_DIR$/mango-backup/pom.xml" />
         <option value="$PROJECT_DIR$/mango-monitor/pom.xml" />
+        <option value="$PROJECT_DIR$/mango-producer/pom.xml" />
+        <option value="$PROJECT_DIR$/mango-consumer/pom.xml" />
       </list>
     </option>
   </component>
