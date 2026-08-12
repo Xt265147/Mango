@@ -8,6 +8,7 @@ import global from '@/utils/global'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
+import '@/assets/neumorphic.scss'
 import i18n from '@/i18n'
 import store from '@/store'
 

@@ -35,3 +35,12 @@ export const findAll = () => {
     method: 'get'
   })
 }
+
+// 查询导航菜单树
+export const findNavTree = params => {
+  return axios({
+    url: '/menu/findNavTree',
+    method: 'get',
+    params
+  })
+}

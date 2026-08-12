@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.evan.mangocore.page.PageRequest;
+import com.evan.mangocore.page.PageResult;
 import com.example.demo.model.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RoleService extends IService<Role> {
 
+    PageResult findPage(PageRequest pageRequest);
 }

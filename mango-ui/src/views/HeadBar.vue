@@ -3,7 +3,7 @@
     <div class="left-area">
       <hamburger/>
       <el-menu mode="horizontal" class="nav-menu" :default-active="activeMenu"
-               background-color="#fff" text-color="#333" active-text-color="#14889A">
+               background-color="var(--neu-bg)" text-color="var(--neu-text)" active-text-color="var(--neu-primary)">
         <nav-menu v-for="menu in navTree" :key="menu.id" :menu="menu"/>
       </el-menu>
     </div>
@@ -100,8 +100,9 @@ export default {
   right: 0;
   height: 60px;
   line-height: 60px;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background: var(--neu-bg);
+  box-shadow:
+    0 4px 14px var(--neu-shadow-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -140,13 +141,13 @@ export default {
 .lang-btn {
   cursor: pointer;
   font-size: 20px;
-  color: #333;
+  color: var(--neu-text);
 }
 .user-info {
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #333;
+  color: var(--neu-text);
   font-size: 14px;
 }
 .user-info .avatar {
@@ -157,7 +158,7 @@ export default {
 }
 .user-info .avatar-icon {
   font-size: 28px;
-  color: #14889A;
+  color: var(--neu-primary);
   margin-right: 8px;
 }
 .user-info .fa-caret-down {
@@ -170,7 +171,7 @@ export default {
   cursor: pointer;
   margin-right: 15px;
   font-size: 20px;
-  color: #333;
+  color: var(--neu-text);
 }
 .notice-badge {
   display: inline-flex;

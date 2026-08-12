@@ -35,3 +35,12 @@ export const findAll = () => {
     method: 'get'
   })
 }
+
+// 查询用户权限标识集合
+export const findPermissions = params => {
+  return axios({
+    url: '/user/findPermissions',
+    method: 'get',
+    params
+  })
+}

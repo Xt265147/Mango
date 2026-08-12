@@ -43,24 +43,24 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #14889A 0%, #2b6e8e 50%, #1a4f6e 100%);
+  background: var(--neu-bg);
 }
 .login-card {
   width: 400px;
-  padding: 20px;
-  border-radius: 8px;
+  padding: 30px;
+  border-radius: var(--neu-radius-lg);
 }
 .login-header {
   text-align: center;
   margin-bottom: 30px;
 }
 .login-header h2 {
-  color: #14889A;
+  color: var(--neu-primary);
   font-size: 28px;
   margin-bottom: 8px;
 }
 .login-header p {
-  color: #999;
+  color: var(--neu-text-light);
   font-size: 14px;
 }
 .login-btn {

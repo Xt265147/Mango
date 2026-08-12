@@ -2,22 +2,14 @@
   <div class="container">
     <nav-bar></nav-bar>
     <head-bar></head-bar>
-    <main-content>
-      <transition name="fade" mode="out-in">
-        <router-view></router-view>
-      </transition>
-    </main-content>
+    <main-content></main-content>
   </div>
 </template>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+.container {
+  height: 100%;
+  background: var(--neu-bg);
 }
 </style>
 

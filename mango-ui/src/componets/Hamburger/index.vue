@@ -32,7 +32,7 @@ export default {
 }
 .hamburger {
   font-size: 20px;
-  color: #333;
+  color: var(--neu-text);
   transition: transform 0.3s;
 }
 .hamburger.is-active {

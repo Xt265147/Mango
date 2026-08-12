@@ -1,13 +1,13 @@
 export default {
   state: {
-    parms: [] // 用户权限标识集合
+    perms: [] // 用户权限标识集合
   },
   getters: {
 
   },
   mutations: {
     setPerms (state, perms) { // 用户权限标识集合
-      state.parms = perms
+      state.perms = perms
     }
   }
 }

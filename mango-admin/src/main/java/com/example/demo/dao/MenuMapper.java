@@ -3,6 +3,8 @@ package com.example.demo.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.model.Menu;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜单管理 Mapper 接口
@@ -13,4 +15,8 @@ import com.example.demo.model.Menu;
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
+    /**
+     * 分页查询
+     */
+    List<Menu> findPage();
 }

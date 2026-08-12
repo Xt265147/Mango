@@ -2,7 +2,6 @@ package com.example.demo.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.model.Dept;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,4 +14,8 @@ import java.util.List;
  */
 public interface DeptMapper extends BaseMapper<Dept> {
 
+    /**
+     * 分页查询
+     */
+    List<Dept> findPage();
 }
