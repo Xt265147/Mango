@@ -1,0 +1,388 @@
+// ============================================================
+// 新拟态 (Neumorphism) 全局设计系统
+// 单色基底 · 双阴影浮雕 · 凹凸交互 · 轻量无纹理
+// ============================================================
+
+// ---------- 设计令牌 (Design Tokens) ----------
+:root {
+  // 基底色 —— 柔和浅灰，所有组件以此色为背景
+  --neu-bg: #e8edf2;
+  --neu-bg-alt: #e0e5ea;
+
+  // 阴影色 —— 暗影和亮影，构成浮雕效果
+  --neu-shadow-dark: #d1d9e6;
+  --neu-shadow-light: #ffffff;
+
+  // 文字色
+  --neu-text: #4a5568;
+  --neu-text-light: #8795a8;
+  --neu-text-muted: #a0aec0;
+
+  // 主色调（保持原有主题色系，但调柔和）
+  --neu-primary: #14889A;
+  --neu-primary-light: #1aa3b8;
+  --neu-primary-dark: #0e6b7a;
+
+  // 功能色
+  --neu-success: #68b884;
+  --neu-warning: #e0a860;
+  --neu-danger: #d9706a;
+  --neu-info: #6b9ebf;
+
+  // 圆角
+  --neu-radius-sm: 8px;
+  --neu-radius: 12px;
+  --neu-radius-lg: 16px;
+  --neu-radius-xl: 20px;
+  --neu-radius-round: 50%;
+
+  // 间距
+  --neu-gap-xs: 4px;
+  --neu-gap-sm: 8px;
+  --neu-gap: 16px;
+  --neu-gap-lg: 24px;
+  --neu-gap-xl: 32px;
+
+  // 过渡
+  --neu-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ---------- 核心混合 (Mixins) ----------
+
+// 凸起 (Convex / Raised) —— 组件浮于基底之上
+@mixin neu-raised($radius: var(--neu-radius), $intensity: 1) {
+  background: var(--neu-bg);
+  border-radius: $radius;
+  @if $intensity == 1 {
+    box-shadow:
+      6px 6px 14px var(--neu-shadow-dark),
+      -6px -6px 14px var(--neu-shadow-light);
+  } @else if $intensity == 2 {
+    box-shadow:
+      9px 9px 20px var(--neu-shadow-dark),
+      -9px -9px 20px var(--neu-shadow-light);
+  } @else {
+    box-shadow:
+      3px 3px 7px var(--neu-shadow-dark),
+      -3px -3px 7px var(--neu-shadow-light);
+  }
+}
+
+// 凹陷 (Concave / Pressed) —— 组件嵌入基底之中
+@mixin neu-concave($radius: var(--neu-radius)) {
+  background: var(--neu-bg);
+  border-radius: $radius;
+  box-shadow:
+    inset 4px 4px 8px var(--neu-shadow-dark),
+    inset -4px -4px 8px var(--neu-shadow-light);
+}
+
+// 扁平 (Flat) —— 与基底同色，几乎不可见
+@mixin neu-flat($radius: var(--neu-radius)) {
+  background: var(--neu-bg);
+  border-radius: $radius;
+  box-shadow: none;
+}
+
+// 凸起 → 凹陷 过渡（按压交互）
+@mixin neu-pressable($radius: var(--neu-radius)) {
+  @include neu-raised($radius);
+  transition: box-shadow var(--neu-transition), transform var(--neu-transition);
+  cursor: pointer;
+  &:active, &.is-active {
+    @include neu-concave($radius);
+    transform: scale(0.98);
+  }
+}
+
+// 凹陷 → 凸起 过渡（选中/激活）
+@mixin neu-toggleable($radius: var(--neu-radius)) {
+  @include neu-concave($radius);
+  transition: box-shadow var(--neu-transition);
+  &.is-active, &.is-checked {
+    @include neu-raised($radius);
+  }
+}
+
+// ---------- 全局 Element UI 覆盖 ----------
+
+// 全局背景
+body {
+  background: var(--neu-bg);
+  color: var(--neu-text);
+}
+
+// 输入框 —— 凹陷效果
+.el-input__inner {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius-sm) !important;
+  box-shadow:
+    inset 2px 2px 5px var(--neu-shadow-dark),
+    inset -2px -2px 5px var(--neu-shadow-light) !important;
+  color: var(--neu-text) !important;
+  transition: box-shadow var(--neu-transition);
+  &:focus {
+    box-shadow:
+      inset 3px 3px 7px var(--neu-shadow-dark),
+      inset -3px -3px 7px var(--neu-shadow-light) !important;
+  }
+}
+
+// 文本域
+.el-textarea__inner {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius-sm) !important;
+  box-shadow:
+    inset 2px 2px 5px var(--neu-shadow-dark),
+    inset -2px -2px 5px var(--neu-shadow-light) !important;
+  color: var(--neu-text) !important;
+  &:focus {
+    box-shadow:
+      inset 3px 3px 7px var(--neu-shadow-dark),
+      inset -3px -3px 7px var(--neu-shadow-light) !important;
+  }
+}
+
+// 下拉选择框
+.el-select .el-input__inner {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  box-shadow:
+    inset 2px 2px 5px var(--neu-shadow-dark),
+    inset -2px -2px 5px var(--neu-shadow-light) !important;
+}
+
+// 数字输入框
+.el-input-number__decrease,
+.el-input-number__increase {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  color: var(--neu-text) !important;
+}
+
+// 单选/多选按钮
+.el-radio__inner, .el-checkbox__inner {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  box-shadow:
+    inset 1px 1px 3px var(--neu-shadow-dark),
+    inset -1px -1px 3px var(--neu-shadow-light) !important;
+}
+
+// 按钮全局（Element UI 按钮覆盖）
+.el-button {
+  border: none !important;
+  border-radius: var(--neu-radius-sm) !important;
+  box-shadow:
+    3px 3px 7px var(--neu-shadow-dark),
+    -3px -3px 7px var(--neu-shadow-light) !important;
+  transition: all var(--neu-transition);
+  &:hover {
+    box-shadow:
+      4px 4px 10px var(--neu-shadow-dark),
+      -4px -4px 10px var(--neu-shadow-light) !important;
+  }
+  &:active {
+    box-shadow:
+      inset 2px 2px 5px var(--neu-shadow-dark),
+      inset -2px -2px 5px var(--neu-shadow-light) !important;
+    transform: scale(0.97);
+  }
+}
+
+// 主要按钮
+.el-button--primary {
+  background: var(--neu-primary) !important;
+  color: #fff !important;
+  box-shadow:
+    3px 3px 7px var(--neu-shadow-dark),
+    -3px -3px 7px var(--neu-shadow-light) !important;
+  &:hover {
+    background: var(--neu-primary-light) !important;
+  }
+  &:active {
+    background: var(--neu-primary-dark) !important;
+  }
+}
+
+// 成功按钮
+.el-button--success {
+  background: var(--neu-success) !important;
+  color: #fff !important;
+}
+
+// 警告按钮
+.el-button--warning {
+  background: var(--neu-warning) !important;
+  color: #fff !important;
+}
+
+// 危险按钮
+.el-button--danger {
+  background: var(--neu-danger) !important;
+  color: #fff !important;
+}
+
+// 信息按钮
+.el-button--info {
+  background: var(--neu-info) !important;
+  color: #fff !important;
+}
+
+// 表格
+.el-table {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius);
+  box-shadow:
+    6px 6px 14px var(--neu-shadow-dark),
+    -6px -6px 14px var(--neu-shadow-light);
+  th {
+    background: var(--neu-bg) !important;
+    color: var(--neu-text) !important;
+    border-bottom: 2px solid var(--neu-shadow-dark) !important;
+  }
+  td {
+    border-bottom: 1px solid var(--neu-shadow-dark) !important;
+    color: var(--neu-text) !important;
+  }
+  tr {
+    background: var(--neu-bg) !important;
+  }
+  // 斑马纹
+  &--striped .el-table__body tr.el-table__row--striped td {
+    background: var(--neu-bg-alt) !important;
+  }
+  // hover
+  .el-table__body tr:hover > td {
+    background: var(--neu-bg-alt) !important;
+  }
+  // 去除外框
+  &::before, &::after {
+    display: none !important;
+  }
+}
+
+// 分页
+.el-pagination {
+  .el-pager li {
+    background: var(--neu-bg) !important;
+    border: none !important;
+    border-radius: var(--neu-radius-sm) !important;
+    box-shadow:
+      2px 2px 4px var(--neu-shadow-dark),
+      -2px -2px 4px var(--neu-shadow-light) !important;
+    &.active {
+      background: var(--neu-primary) !important;
+      color: #fff !important;
+    }
+  }
+  button {
+    background: var(--neu-bg) !important;
+    border: none !important;
+    border-radius: var(--neu-radius-sm) !important;
+    box-shadow:
+      2px 2px 4px var(--neu-shadow-dark),
+      -2px -2px 4px var(--neu-shadow-light) !important;
+  }
+}
+
+// 卡片
+.el-card {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius) !important;
+  box-shadow:
+    8px 8px 18px var(--neu-shadow-dark),
+    -8px -8px 18px var(--neu-shadow-light) !important;
+}
+
+// 对话框
+.el-dialog {
+  background: var(--neu-bg) !important;
+  border-radius: var(--neu-radius-lg) !important;
+  box-shadow:
+    10px 10px 24px var(--neu-shadow-dark),
+    -10px -10px 24px var(--neu-shadow-light) !important;
+  .el-dialog__header {
+    border-bottom: 1px solid var(--neu-shadow-dark);
+  }
+  .el-dialog__footer {
+    border-top: 1px solid var(--neu-shadow-dark);
+  }
+  .el-dialog__title {
+    color: var(--neu-text);
+  }
+}
+
+// 标签页
+.el-tabs__header {
+  border-bottom: 1px solid var(--neu-shadow-dark) !important;
+}
+.el-tabs__item {
+  color: var(--neu-text-light) !important;
+}
+.el-tabs__item.is-active {
+  color: var(--neu-primary) !important;
+}
+
+// 标签
+.el-tag {
+  border: none !important;
+  border-radius: var(--neu-radius-sm) !important;
+  box-shadow:
+    2px 2px 4px var(--neu-shadow-dark),
+    -2px -2px 4px var(--neu-shadow-light);
+}
+
+// 菜单
+.el-menu {
+  background: transparent !important;
+  border: none !important;
+}
+.el-menu-item, .el-submenu__title {
+  color: var(--neu-text) !important;
+  &:hover {
+    background: var(--neu-bg) !important;
+  }
+}
+
+// 下拉菜单
+.el-dropdown-menu {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius) !important;
+  box-shadow:
+    6px 6px 14px var(--neu-shadow-dark),
+    -6px -6px 14px var(--neu-shadow-light) !important;
+}
+.el-dropdown-menu__item:hover {
+  background: var(--neu-bg-alt) !important;
+}
+
+// 弹出框
+.el-popover {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius) !important;
+  box-shadow:
+    8px 8px 18px var(--neu-shadow-dark),
+    -8px -8px 18px var(--neu-shadow-light) !important;
+}
+
+// 表单标签
+.el-form-item__label {
+  color: var(--neu-text) !important;
+}
+
+// 级联/选择器下拉
+.el-select-dropdown, .el-cascader-menu {
+  background: var(--neu-bg) !important;
+  border: none !important;
+  border-radius: var(--neu-radius) !important;
+  box-shadow:
+    6px 6px 14px var(--neu-shadow-dark),
+    -6px -6px 14px var(--neu-shadow-light) !important;
+}
