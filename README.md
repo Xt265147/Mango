@@ -11,6 +11,45 @@
 | producer | 8006 | 生产者功能                                                              |
 
 
+# 技术栈
+
+## 后端
+| 分类     | 技术                                |
+|--------|-----------------------------------|
+| 语言     | Java 17                            |
+| 框架     | Spring Boot 3.2.5                  |
+| 安全     | Spring Security + JWT (jjwt)       |
+| 持久层   | MyBatis-Plus + MySQL               |
+| 连接池   | Druid                              |
+| 会话     | Spring Session JDBC                |
+| 验证码   | kaptcha                            |
+| 文档     | springdoc-openapi (Swagger)        |
+| 导出     | Apache POI (poi-ooxml)             |
+| 其他     | Lombok、spring-boot-starter-actuator |
+
+## 前端 (mango-ui)
+| 分类     | 技术                                          |
+|--------|---------------------------------------------|
+| 框架     | Vue 2.5                                      |
+| UI 组件  | Element UI 2.15.14                           |
+| 路由     | Vue Router 3                                 |
+| 状态管理  | Vuex 3.6.2                                   |
+| HTTP    | axios                                        |
+| 国际化   | vue-i18n                                     |
+| 样式     | Sass + 新拟态 (Neumorphism) 设计系统           |
+| 图标     | Font Awesome 4.7                             |
+| 其他     | js-cookie、mockjs、webpack 3 构建              |
+
+## 部署模块
+| 模块       | 说明                       |
+|----------|--------------------------|
+| admin    | 权限管理核心（用户/角色/菜单/部门）     |
+| backup   | 数据库备份                    |
+| monitor  | 系统监控                     |
+| producer | 生产者                       |
+| consumer | 消费者                       |
+
+
 # 首页图片
 ![首页](/img/index.png)
 # 登录页面
